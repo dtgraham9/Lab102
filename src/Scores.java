@@ -2,8 +2,10 @@
 import java.util.Random;
 
 /**
- *
- * @author Thompson
+ * Implements abstract methods from bag
+ * Initializes int array and int count
+ * @author Graham Thompson
+ * @version
  */
 public class Scores implements Bag
 {
@@ -152,7 +154,8 @@ public class Scores implements Bag
         for(int i =0; i<this.list.length-1; i++){
             print += this.list[i] + ", ";
         }
-        print+=this.list[this.list.length-1];
+        print+=this.list[this.list.length-1] + "\n";
+        print+="Length: " + this.count;
         return print;
     }
     
@@ -170,12 +173,20 @@ public class Scores implements Bag
             throw new ArrayIndexOutOfBoundsException();
         }
     }
-    
+    /**
+     * Default constructor for Scores creates int array
+     * of length 50
+     */
     public Scores(){
         this.list = new int[50];
         
     }
     
+    /**
+     * Overloaded constructor for Scores that creates int array
+     * of length parameter size
+     * @param size 
+     */
     public Scores(int size){
         this.list = new int[size];
     }

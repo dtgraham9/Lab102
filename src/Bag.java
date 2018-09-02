@@ -1,5 +1,5 @@
 /**
- * Bag provides abstract methods for managing
+ * Bag provides abstract methods for managing bag of ints
  * @author Graham Thompson
  * @version 
  */

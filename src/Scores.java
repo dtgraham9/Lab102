@@ -2,14 +2,14 @@
 import java.util.Random;
 
 /**
- * Implements abstract methods from bag
+ * Implements abstract methods from Bag
  * Initializes int array and int count
  * @author Graham Thompson
  * @version
  */
 public class Scores implements Bag
 {
-     int[] list;
+    int[] list;
     int count;
     
     /**
@@ -66,14 +66,10 @@ public class Scores implements Bag
     @Override
     public void remove(int num) {
         int i = 0;
-        while(!(this.list[i]==num)){
+        while(!(this.list[i]==num) && i < this.count){
             i++;
         }
-        if(this.list.length == i){
-            
-        }
-        
-        else if((this.list.length-1) == i){
+      if((this.list.length-1) == i){
             this.list[i] = 0;
             this.count--;
     }
@@ -104,9 +100,10 @@ public class Scores implements Bag
      */
     @Override
     public void clear() {
-        for(int i = this.list.length-1; i>=0; i--){
+        for(int i = this.count-1; i>=0; i--){
             this.list[i] = 0;
         }
+        this.count=0;
     }
     
     /**
@@ -119,7 +116,7 @@ public class Scores implements Bag
     public int getFrequency(int num) {
         int instances = 0;
         int i = 0;
-        while(i < this.list.length){
+        while(i < this.count){
             instances = num == this.list[i] ? instances+1 : instances;
             i++;
         }
@@ -135,7 +132,7 @@ public class Scores implements Bag
     @Override
     public boolean contains(int num) {
         int i = 0;
-        while(i < this.list.length){
+        while(i < this.count){
             if(num == this.list[i]){
                 return true;
             }
@@ -145,8 +142,10 @@ public class Scores implements Bag
     }
     
     /**
-     * returns a String of the contents of the bag
-     * @return 
+     * returns a String of the contents (array values and number of elements) of
+     * the bag
+     *
+     * @return
      */
     @Override
     public String toString(){
@@ -174,12 +173,35 @@ public class Scores implements Bag
         }
     }
     /**
+     * Tests to see if count and the order of the values are the same
+     * @param o
+     * @return 
+     */
+    @Override
+    public boolean equals(Object o){
+        if ( !( o instanceof Scores ) )
+            return false;   
+        Scores e = ( Scores ) o;
+        if(e.count != this.count){
+            return false;
+        }
+        else{
+            for(int i = 0; i < e.count; i++){
+                if(e.list[i]!=this.list[i]){
+                    return false;
+                }
+            }
+        return true;
+        }
+    }
+    
+    /**
      * Default constructor for Scores creates int array
      * of length 50
      */
     public Scores(){
         this.list = new int[50];
-        
+        this.count = 0;
     }
     
     /**
@@ -189,6 +211,7 @@ public class Scores implements Bag
      */
     public Scores(int size){
         this.list = new int[size];
+        this.count = 0;
     }
     
     
